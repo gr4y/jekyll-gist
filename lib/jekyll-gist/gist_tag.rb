@@ -69,7 +69,7 @@ module Jekyll
             read_timeout: 3, open_timeout: 3) do |http|
             request = Net::HTTP::Get.new uri.to_s
             response = http.request(request)
-            response.body
+            response.body.force_encoding('UTF-8')
           end
         rescue SocketError, Net::HTTPError, Net::OpenTimeout, Net::ReadTimeout, TimeoutError
           nil
